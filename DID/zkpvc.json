@@ -1,0 +1,25 @@
+ {
+  "@context": [
+    "https://www.w3.org/ns/credentials/v2",
+    "https://www.w3.org/ns/credentials/examples/v2"
+  ],
+  "credentialSubject": {
+    "id": "did:user1:19916083176f4b3cb2b0daae9725c079",
+    "info": {
+      "age": 30,
+      "gender": "man",
+      "name": "zhangsan"
+    }
+  },
+  "id": "urn:uuid:bd56a3c4-5be3-4c23-b4a5-878a59b7a012",
+  "issuer": "did:issuer1:8adf89f92b354d73acdfa91e619204ee",
+  "proof": {
+    "signatureValue": "c6d6cafafd4ac4d2e87d1ca207bbde421b1e5ea05f8e1619e70cf2e20a53103c:c029a1aba31e63620224df1c0ffc147bd899baf4bb1ae404b63fc321be73a08a",
+    "type": "JsonWebSignature2020",
+    "verificationMethod": "did:example:123#key-1"
+  },
+  "type": [
+    "VerifiableCredential",
+    "CompanyInformationCredential"
+  ]
+}

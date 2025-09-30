@@ -1,0 +1,99 @@
+curl --request PUT \
+    --url http://peer1.kss01-5ce59dc0711745d-db.vdc3056306.bsnbase.com:32000/_users \
+   --header 'authorization: Basic YWRtaW46UEwsbWtvMDkq' 
+   
+   
+    curl --request GET \
+   --url http://peer1.kss01-5ce59dc0711745d-db.vdc3056306.bsnbase.com:32000/_all_dbs  \
+   --header 'authorization: Basic YWRtaW46UEwsbWtvMDkq' 
+   
+   
+http://peer1.kss01-5ce59dc0711745d-db.vdc3056306.bsnbase.com:32000/_utils
+http://peer2.kss01-5ce59dc0711745d-db.vdc3056306.bsnbase.com:32000/_utils   
+   peer2.kss01-5ce59dc0711745d-db.vdc3056306.bsnbase.com 
+
+
+curl --request GET \
+   --url http://peer2.kss01-5ce59dc0711745d-db.vdc3056306.bsnbase.com:32000/fabricsbp202561001__lifecycle \
+   --header 'authorization: Basic YWRtaW46UEwsbWtvMDkq' 
+   
+   
+   curl --request GET \
+   --url http://peer2.kss01-5ce59dc0711745d-db.vdc3056306.bsnbase.com:32000/fabricsbp202561001__lifecycle1 \
+   --header 'authorization: Basic YWRtaW46UEwsbWtvMDkq' 
+   
+   
+   
+   这是SBP_Portal最新原型，北京的同事可以查看内网的链接
+   
+   http://guest:hzkj2021@192.168.1.185:8080/HongKong_SBP_Portal/?id=39fudz&p=login
+   
+   （链接可以在群标签和需求文档里都可以找到，账号 guest ，密码 hzkj2021
+   
+   
+   http://10.0.50.12:8088/sbp-did/oc/sbp-private-chainmgt.git
+   
+
+{"updateHardware":{"res":{"status":2}}}
+
+
+推荐的 Golang DID/VC/VP 相关优秀第三方包
+github.com/TBD54566975/ssi-sdk
+支持多种 DID 方法（包括 did:web、did:key、did:ion 等）
+支持 VC/VP 的生成、签名、验证
+支持多种加密算法（Ed25519、secp256k1 等）
+文档完善，社区活跃
+
+github.com/hyperledger/aries-framework-go
+Hyperledger 官方，支持丰富的 DID/VC/VP 场景
+适合企业级、复杂场景
+依赖较多，入门门槛略高
+
+github.com/decentralized-identity/go-did
+微软主导，专注 DID 文档解析和管理
+
+github.com/TBD54566975/ssi-sdk 已被下面取得
+github.com/decentralized-identity/web5-go
+github.com/decentralized-identity/web5-go
+
+https://github.com/trustbloc/did-go
+
+使用Golang语言 ，生成由 可验证凭证（Verifiable Credential, VC） 组成的 可验证呈现（Verifiable Presentation, VP），
+使用方法 did:web 可以实现更灵活、安全的 VP（Verifiable Presentation）签名和验证机制。
+提供一个从生成DID,到颁发VC,再到生成VP,最后使用VC/VP进行验证的测试流程
+
+	"github.com/hyperledger/aries-framework-go/pkg/doc/util/kmscrypto"
+     https://github.com/hyperledger-aries/aries-framework-go-ext
+	 
+同时支持的密钥算法ECDSA(secp256r1 、ed25519)、RSA （2048、4096）、SM2
+
+所有使用 Linked Data Proof 的签名（如 VC、VP）都要先将 JSON-LD 规范化为 RDF Dataset，这个过程依赖 @context。
+如果没有语义上下文，字段“看起来一样”但含义不同，会导致签名哈希不同 → 签名验证失
+
+
+少了对颁发者生命周期的管理。
+没有对所有的model的方法进行描述。进一步细化每个方法的描述， 下面我给出每个模块的设计的业务。再结合上面的进行丰富描述: 
+   1. DIDModule 除了常规的w3c规定的DID功能外，归档需要将did文档上传到区块链，用于管理did文档状态，后续其他人都可以通过查询DID查询文档状态是否正常。比如VC 颁发和验证的时会校验did颁发者或持有者的DID状态; 
+   2. TemplateModule 用于当一个DID持有者通过OpenAPI 注册为一个颁发者后，可以自定义个VC模板，并上传到区块链。链上维护VC模板的状态;
+   3. VCModule 除了常规的w3c规定的VC功能外,颁发者还需要将颁发的VC进行hash256，调用OpenAPI进行存证，管理VC状态， VCModule进行颁发VC时，需要通过调用DIDModule获取持证人的DID信息是否有效还需要从通过调用TemplateModule模块通过模板ID去OpenAPi获取模板信息，通过模板信息生成VC信息并进行hash存证;
+   4. PresentationModule 是对生成的VC进行选择性批露，目前支持（bbs+、sw-jwt）, 以及相关VP验证，验证过程肯定先获取持证人DID信息是否有效，再校验VP的Proof, 然后对每个VC进行验证;
+   
+将结果更新到end.md中   
+
+现有个要优化的点，将模块中方法描述， 调整下面个格式：  
+方法名（解释）
+方法内部处理逻辑（尽可能的描述）
+Params （入参）：
+入参名（入参类型）： 入参含义
+Returns（返回值）：
+（出参类型）： 出参含义
+
+比如：
+new_chain（创建一个新链）
+根据参数给出的名字创建一个链的实例。这实际上代表“通道”（正如上面解释的），这个调用返回一个空对象。初始化这个通道，这个返回的对象上必须配置一个参与方的背书者列表和排序者节点。
+Params （参数）：
+name (str):链的名称，推荐使用命名空间防止碰撞
+Returns（返回值）：
+(Chain instance):未初始化的链的实例
+   
+   

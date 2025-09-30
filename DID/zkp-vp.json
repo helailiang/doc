@@ -1,0 +1,41 @@
+{
+    "@context": [
+        "https://www.w3.org/2018/credentials/v1"
+    ],
+    "id": "urn:uuid:bd56a3c4-5be3-4c23-b4a5-878a59b7a012",
+    "type": [
+        "VerifiablePresentation"
+    ],
+    "verifiableCredential": [
+        {
+            "@context": [
+                "https://www.w3.org/2018/credentials/v1"
+            ],
+            "credentialSubject": {
+                "name": "zhangsan"
+            },
+            "type": [
+                "VerifiableCredential",
+                "ExampleCredential"
+            ],
+            "issuer": "did:issuer1:8adf89f92b354d73acdfa91e619204ee",
+            "proof": {
+                "curve": "BN254",
+                "hashAlgorithm": "MiMC",
+                "proofSystem": "groth16",
+                "publicInput": "AAAAAwAAAAAAAAADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADlvKDkuIkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMTk5NS0wMS0wMQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB",
+                "type": "ZKSnarkProof2020",
+                "verificationKey": "7Ss5ya/v5ifMplXoXAzFvxa2C6lM1M3PrQIgJchtKuirstYMDZ1vmHQLiPdmaYsy9JLbwmiLjgL9xrwEzLx5be9Tk1c7K69v+0IdICZzeFIWUlJJa7jxSw1iu5TmmmXSJ2ihBeAy63+KCrIi+mmTLkPdtsvnKef+IElui3zi8iaGHIEF7Jhwp7Ux2Mge7xtQRLPKhLVpISvvYBr6YVAXuAYPth7+kBpwwIdoVviPPOE13LJbDYzGI3HrvzgcHeXIzwmr3DMlLo8fzpTxAwfEJGuJdd+dJI38rxy8N1kWHpWBp0SFuOavhiy21VOGKk1Z5GGwIA5SfkMTqSKwiuDNbi+kAEJ+bFyvq3aoEwbndjRJgQbVm1sHOKMmgIHlTUU0AAAABMH8OuHZ7cwJmn6ZXJaExDwRLziyl79/Iq0IeUXE8VexQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOW3KMnalK6TRYwz311HKnfxPVFOanYNVG8F/+izDp19AAAAAAAAAAA=",
+                "verificationMethod": "did:example:123#key-1",
+                "zkProof": "q82mM4RZC8o6CtzBFTXjxAa+weku3NXECiAbUvFXcubjSO+UW3tG297OcGCdBijbsCIqFij9D4xsLUJLsY4CwwIiVmuyySk4PGaj5hlOvggBznoMGB8dSxrU3vjy5MUelntFTQQyVuBytjJzXFqi6aJbciLTuWTm7jk6/156FGAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="
+            }
+        }
+    ],
+    "proof": {
+        "type": "ZKSnarkProof2020",
+        "created": "2025-06-14T09:30:00Z",
+        "proofPurpose": "authentication",
+        "verificationMethod": "did:eproof:19916083176f4b3cb2b0daae9725c079#key-1",
+        "proofValue": "z3MgUFUbB7a8J5Y2Z7XwVQ5J2X9J5Y2Z7XwVQ5J2X9J5Y2Z7XwVQ5J2X9J5Y2Z7XwVQ5J2X9J5Y2Z7XwVQ5J2X9J5Y2Z7XwVQ5J2X9J5Y2Z7XwVQ5J2X9"
+    }
+}
